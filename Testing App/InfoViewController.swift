@@ -24,6 +24,7 @@ class InfoViewController: UIViewController {
     private var originalCommentDtlList = [Comment]()
     private var filteredCommentDtlList = [Comment]()
 
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -42,6 +43,7 @@ class InfoViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup View
     private func setupView(){
         myAddKeyboardDisplayNotifications(scrollView: scrollView)
         myEnableToHideKeyboardByTappingBackgroundView()
@@ -55,6 +57,7 @@ class InfoViewController: UIViewController {
         commentTableView.addObserver(self, forKeyPath: "contentSize", options: .new, context: nil)
     }
     
+    // MARK: - Call API
     private func callPostUrlMethod() {
         let url = "https://jsonplaceholder.typicode.com/posts/{post_id}".replacingOccurrences(of: "{post_id}", with: "\(selectedId)")
         MyUtility.loadAllPostUrl(url: url) { (callbackObject: Any?) in
@@ -100,6 +103,7 @@ class InfoViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension InfoViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         recordsLabel.text = "(\(filteredCommentDtlList.count))"
@@ -118,6 +122,7 @@ extension InfoViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension InfoViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
