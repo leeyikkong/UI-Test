@@ -13,20 +13,26 @@ class ViewController: UIViewController {
     
     private var commentList = [Comment]()
     
+    // MARK: - ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        
-        MyUtility.loadAllPostUrl(url: "https://jsonplaceholder.typicode.com/posts") { (callbackObject: Any?) in
-            self.handleJsonObject(jsonList: callbackObject)
-        }
+        callLoadAllPostUrl()
     }
     
+    // MARK: - Setup View
     private func setupView(){
         itemTV.delegate = self
         itemTV.dataSource = self
         itemTV.rowHeight = UITableView.automaticDimension
         itemTV.separatorStyle = .none
+    }
+    
+    // MARK: - Call API
+    private func callLoadAllPostUrl() {
+        MyUtility.loadAllPostUrl(url: "https://jsonplaceholder.typicode.com/posts") { (callbackObject: Any?) in
+            self.handleJsonObject(jsonList: callbackObject)
+        }
     }
     
     private func handleJsonObject(jsonList: Any?){
@@ -43,6 +49,7 @@ class ViewController: UIViewController {
         itemTV.reloadData()
     }
     
+    // MARK: - Prepare Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "page1ToPage2":
@@ -55,6 +62,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("didSelectRowAt -> \(indexPath.row)")
@@ -62,6 +70,7 @@ extension ViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentList.count
