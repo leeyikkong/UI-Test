@@ -43,9 +43,10 @@ class InfoViewController: UIViewController {
     }
     
     private func setupView(){
-        flAddKeyboardDisplayNotifications(scrollView: scrollView)
-        flEnableToHideKeyboardByTappingBackgroundView()
+        myAddKeyboardDisplayNotifications(scrollView: scrollView)
+        myEnableToHideKeyboardByTappingBackgroundView()
         
+        bgView.layer.cornerRadius = 5
         filterSearchBar.delegate = self
         
         commentTableView.dataSource = self

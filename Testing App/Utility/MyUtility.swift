@@ -51,31 +51,31 @@ class MyUtility: NSObject {
 public extension UIViewController {
     // MARK: Keyboard
     
-    @objc func flAddKeyboardDisplayNotifications(scrollView: UIScrollView, delegate: FLKeyboardDelegate? = nil) {
+    @objc func myAddKeyboardDisplayNotifications(scrollView: UIScrollView, delegate: MyKeyboardDelegate? = nil) {
         keyboardRelatedScrollView = scrollView
-        flKeyboardDelegate = delegate
+        myKeyboardDelegate = delegate
         
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     /// Remove Notification.Name.UIKeyboardWillShow & Notification.Name.UIKeyboardWillHide
-    @objc func flRemoveKeyboardDisplayNotifications() {
+    @objc func myRemoveKeyboardDisplayNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         
         keyboardRelatedScrollView = nil
         keyboardRelatedScrollViewContentInset = nil
         keyboardRelatedScrollViewScrollIndicatorInsets = nil
-        flKeyboardDelegate = nil
+        myKeyboardDelegate = nil
     }
     
-    @objc func flHideKeyboard() {
+    @objc func myHideKeyboard() {
         self.view.endEditing(true)
     }
     
-    @objc func flEnableToHideKeyboardByTappingBackgroundView(cancelsTouchesInView: Bool = true) {
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(UIViewController.flHideKeyboard))
+    @objc func myEnableToHideKeyboardByTappingBackgroundView(cancelsTouchesInView: Bool = true) {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(UIViewController.myHideKeyboard))
         tapGR.cancelsTouchesInView = cancelsTouchesInView
         self.view.addGestureRecognizer(tapGR)
     }
@@ -83,7 +83,7 @@ public extension UIViewController {
     private static var keyboardRelatedScrollViewList = [String : UIScrollView]()
     private static var keyboardRelatedScrollViewContentInsetList = [String : UIEdgeInsets]()
     private static var keyboardRelatedScrollViewScrollIndicatorInsetsList = [String : UIEdgeInsets]()
-    private static var keyboardDelegateList = [String : FLKeyboardDelegate]()
+    private static var keyboardDelegateList = [String : MyKeyboardDelegate]()
     
     private var keyboardRelatedScrollView: UIScrollView? {
         get {
@@ -127,7 +127,7 @@ public extension UIViewController {
         }
     }
     
-    private var flKeyboardDelegate: FLKeyboardDelegate? {
+    private var myKeyboardDelegate: MyKeyboardDelegate? {
         get {
             return UIViewController.keyboardDelegateList["\(self.description)_flkeyboarddelegate"]
         }
@@ -184,7 +184,7 @@ public extension UIViewController {
             }
             
             if let krScrollView = keyboardRelatedScrollView {
-                flKeyboardDelegate?.flKeyboardWillShow(keyboardEndFrame: keyboardFrameCGRect, scrollView: krScrollView)
+                myKeyboardDelegate?.flKeyboardWillShow(keyboardEndFrame: keyboardFrameCGRect, scrollView: krScrollView)
             }
         }
     }
@@ -219,12 +219,12 @@ public extension UIViewController {
         if let krScrollView = keyboardRelatedScrollView,
             let keyboardInfo: [AnyHashable : Any] = notification.userInfo,
             let keyboardFrameCGRect = (keyboardInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            flKeyboardDelegate?.flKeyboardWillHide(keyboardEndFrame: keyboardFrameCGRect, scrollView: krScrollView)
+            myKeyboardDelegate?.flKeyboardWillHide(keyboardEndFrame: keyboardFrameCGRect, scrollView: krScrollView)
         }
     }
 }
 
-@objc public protocol FLKeyboardDelegate {
+@objc public protocol MyKeyboardDelegate {
     func flKeyboardWillShow(keyboardEndFrame: CGRect, scrollView: UIScrollView)
     func flKeyboardWillHide(keyboardEndFrame: CGRect, scrollView: UIScrollView)
 }
