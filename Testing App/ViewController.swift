@@ -31,13 +31,13 @@ class ViewController: UIViewController {
     
     private func handleJsonObject(jsonList: Any?){
         if let object = jsonList as? [Any] {
-            for item in object as! [Dictionary<String, AnyObject>] {
+            for item in object as! [[String:Any]] {
                 let userId = MyUtility.checkIntJson(item, "userId")
                 let id = MyUtility.checkIntJson(item, "userId")
                 let title = MyUtility.checkStringJson(item, "title")
                 let body = MyUtility.checkStringJson(item, "body")
                 
-                commentList.append(Comment(userId: userId, id: id, title: title, body: body))
+                commentList.append(Comment.init(userId: userId, id: id, title: title, body: body))
             }
         }
         itemTV.reloadData()
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         switch segue.identifier {
         case "page1ToPage2":
             if let viewController = segue.destination as? InfoViewController, let selectedId = sender as? Int {
-                viewController.selectedId = selectedId
+                viewController.selectedId = selectedId + 1
             }
         default:
             break

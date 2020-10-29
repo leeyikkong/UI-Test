@@ -18,6 +18,7 @@
 		37861C5F2549ADEE00C60B7C /* MyUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37861C5E2549ADEE00C60B7C /* MyUtility.swift */; };
 		37861C642549C12F00C60B7C /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37861C632549C12F00C60B7C /* ItemTableViewCell.swift */; };
 		37861C6D2549E32400C60B7C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37861C6C2549E32400C60B7C /* InfoViewController.swift */; };
+		37FAC917254A72A200D2C61D /* ItemCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAC916254A72A200D2C61D /* ItemCommentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		37861C5E2549ADEE00C60B7C /* MyUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUtility.swift; sourceTree = "<group>"; };
 		37861C632549C12F00C60B7C /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
 		37861C6C2549E32400C60B7C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		37FAC916254A72A200D2C61D /* ItemCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCommentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				37861C632549C12F00C60B7C /* ItemTableViewCell.swift */,
+				37FAC916254A72A200D2C61D /* ItemCommentTableViewCell.swift */,
 			);
 			path = UITableViewCell;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				37861C442549976700C60B7C /* ViewController.swift in Sources */,
 				37861C5F2549ADEE00C60B7C /* MyUtility.swift in Sources */,
 				37861C642549C12F00C60B7C /* ItemTableViewCell.swift in Sources */,
+				37FAC917254A72A200D2C61D /* ItemCommentTableViewCell.swift in Sources */,
 				37861C402549976700C60B7C /* AppDelegate.swift in Sources */,
 				37861C4A2549976700C60B7C /* Testing_App.xcdatamodeld in Sources */,
 				37861C6D2549E32400C60B7C /* InfoViewController.swift in Sources */,
