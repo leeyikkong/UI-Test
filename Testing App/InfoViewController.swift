@@ -126,10 +126,11 @@ extension InfoViewController: UITableViewDataSource {
 extension InfoViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
-            filteredCommentDtlList = originalCommentDtlList.filter {
-                return $0.name.range(of:searchText, options: .caseInsensitive) != nil ||
-                    $0.email.range(of:searchText, options: .caseInsensitive) != nil ||
-                    $0.body.range(of:searchText, options: .caseInsensitive) != nil
+            filteredCommentDtlList.removeAll()
+            for item in originalCommentDtlList {
+                if item.matches(query: searchText) {
+                    filteredCommentDtlList.append(item)
+                }
             }
             
             commentTableView.reloadData()

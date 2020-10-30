@@ -36,3 +36,28 @@ struct Comment {
         self.email = email
     }
 }
+
+protocol Searchable {
+    func matches(query: String) -> Bool
+}
+
+extension String: Searchable {
+    func matches(query: String) -> Bool {
+        // Implement any kind of searching algorithm here. Could be as smart as fuzzy seraching
+        // or as basic as this case-insenitive simple substring search
+        return self.lowercased().contains(query)
+    }
+}
+
+extension Int: Searchable {
+    func matches(query: String) -> Bool {
+        return String(self).matches(query: query)
+    }
+}
+
+extension Comment: Searchable {
+    func matches(query: String) -> Bool {
+        let constituents: [Searchable] = [userId, id, title, body, postId, name, email]
+        return constituents.contains(where: { $0.matches(query: query) })
+    }
+}
